@@ -15,7 +15,7 @@ How to run:
 
 (1.1) Make a db in your MySQL Workbench connection called whatever you want.
 
-(1.2) Add a .env file in the root dir or the reop that looks like PASSWORD=yourpasswordformyqlworkbench DBNAME=nameofdatabase
+(1.2) Add a .env file in the root dir or the repo that looks like PASSWORD=yourpasswordformyqlworkbench DBNAME=nameofdatabase
 
 (2) `cd react-crud`
 
