@@ -1,0 +1,17 @@
+.env
+package-lock.json
+/node_modules
+/react-crud/package-lock.json
+/react-crud/.eslintcache
+/react-crud/node_modules
+/react-crud/.env
+# misc
+.DS_Store
+/react-crud/.DS_Store
+
+npm-debug.log*
+/react-crud/npm-debug.log*
+yarn-debug.log*
+/react-crud/yarn-debug.log*
+yarn-error.log*
+/react-crud/yarn-error.log*

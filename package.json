@@ -1,0 +1,35 @@
+{
+  "name": "csc675-marketplace",
+  "version": "1.0.0",
+  "description": "A marketplace database system with admin access to view and change tables.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gfreedland/CSC675-MarketPlace.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "sequelize",
+    "mysql",
+    "rest",
+    "api"
+  ],
+  "author": "George Freedland",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gfreedland/CSC675-MarketPlace/issues"
+  },
+  "homepage": "https://github.com/gfreedland/CSC675-MarketPlace#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  }
+}
