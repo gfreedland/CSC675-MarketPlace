@@ -1,11 +1,11 @@
 # The Market Place
 SFSU CSC675 Databases Term Project, Market Place Application
+
 George Freedland, Danny Collan, Valeria Vallejo, Mohammad Ahsan 
 
 Description:
 This is a fullstack application connecting a MySQL database with Node.js, Express, and Sequelize serving as a Rest API 
-allowing CRUD operations and allowing advanced queries and table creations to be used by the front end.
-The front end interface is made using React.js and bootstrap.
+for the front end interface which is made using React.js w/hooks, and bootstrap.
 
 How to run:
 (0) Make sure you have MySQL Workbench installed as well as Node for using node package manager.
