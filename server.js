@@ -23,11 +23,12 @@ db.sequelize.sync({ force: true }).then(() => {
 });
 
 // Redirects to front end index.html
-app.get('/', function (req,res) {
+app.get('/', function (_req, res) {
   res.sendFile(path + "index.html");
 });
 
 require("./app/routes/vendor.routes")(app);
+require("./app/routes/customer.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

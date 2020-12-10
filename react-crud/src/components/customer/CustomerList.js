@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import VendorDataService from '../services/VendorService';
+import CustomerDataService from '../../services/CustomerService';
 import { Link } from "react-router-dom";
 
-const VendorList = () => {
-  const [vendors, setVendors] = useState([]);
-  const [currentVendor, setCurrentVendor] = useState(null);
+const CustomerList = () => {
+  const [customers, setCustomers] = useState([]);
+  const [currentCustomer, setCurrentCustomer] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [searchTitle, setSearchTitle] = useState("");
 
   useEffect(() => {
-    retrieveVendors();
+    retrieveCustomers();
   }, []);
 
   const onChangeSearchTitle = e => {
@@ -17,10 +17,10 @@ const VendorList = () => {
     setSearchTitle(searchTitle);
   };
 
-  const retrieveVendors = () => {
-    VendorDataService.getAll()
+  const retrieveCustomers = () => {
+    CustomerDataService.getAll()
       .then(response => {
-        setVendors(response.data);
+        setCustomers(response.data);
         console.log(response.data);
       })
       .catch(e => {
@@ -29,18 +29,18 @@ const VendorList = () => {
   };
 
   const refreshList = () => {
-    retrieveVendors();
-    setCurrentVendor(null);
+    retrieveCustomers();
+    setCurrentCustomer(null);
     setCurrentIndex(-1);
   };
 
-  const setActiveVendor = (vendor, index) => {
-    setCurrentVendor(vendor);
+  const setActiveCustomer = (customer, index) => {
+    setCurrentCustomer(customer);
     setCurrentIndex(index);
   };
 
-  const removeAllVendors = () => {
-    VendorDataService.removeAll()
+  const removeAllCustomers = () => {
+    CustomerDataService.removeAll()
       .then(response => {
         console.log(response.data);
         refreshList();
@@ -51,9 +51,9 @@ const VendorList = () => {
   };
 
   const findByName = () => {
-    VendorDataService.findByName(searchTitle)
+    CustomerDataService.findByName(searchTitle)
       .then(response => {
-        setVendors(response.data);
+        setCustomers(response.data);
         console.log(response.data);
       })
       .catch(e => {
@@ -84,74 +84,73 @@ const VendorList = () => {
         </div>
       </div>
       <div className="col-md-6">
-        <h4>Vendors List</h4>
+        <h4>Customers List</h4>
 
         <ul className="list-group">
-          {vendors &&
-            vendors.map((vendor, index) => (
+          {customers &&
+            customers.map((customer, index) => (
               <li
                 className={
                   "list-group-item " + (index === currentIndex ? "active" : "")
                 }
-                onClick={() => setActiveVendor(vendor, index)}
+                onClick={() => setActiveCustomer(customer, index)}
                 key={index}
               >
-                {vendor.vname}
+                {customer.cname}
               </li>
             ))}
         </ul>
 
         <button
           className="m-3 btn btn-sm btn-danger"
-          onClick={removeAllVendors}
+          onClick={removeAllCustomers}
         >
           Remove All
         </button>
       </div>
       <div className="col-md-6">
-        {currentVendor ? (
+        {currentCustomer ? (
           <div>
-            <h4>Vendor</h4>
-            <div>
-              <label>
-                <strong>Name:</strong>
-              </label>{" "}
-              {currentVendor.vname}
-            </div>
+            <h4>Customer</h4>
             <div>
               <label>
                 <strong>ID:</strong>
               </label>{" "}
-              {currentVendor.id}
+              {currentCustomer.id}
+            </div> 
+            <div>
+              <label>
+                <strong>Name:</strong>
+              </label>{" "}
+              {currentCustomer.cname}
             </div>
-            
+            <div>
+              <label>
+                <strong>Password:</strong>
+              </label>{" "}
+              {currentCustomer.cpassword}
+            </div>
             <div>
               <label>
                 <strong>Email:</strong>
               </label>{" "}
-              {currentVendor.vemail}
-            </div>
-            <div>
-              <label>
-                <strong>Type:</strong>
-              </label>{" "}
-              {currentVendor.vtype}
+              {currentCustomer.cemail}
             </div>
             <div>
               <label>
                 <strong>Address:</strong>
               </label>{" "}
-              {currentVendor.vaddress}
+              {currentCustomer.caddress}
             </div>
             <div>
               <label>
                 <strong>Date Created:</strong>
               </label>{" "}
-              {new Date(currentVendor.createdAt).toString('YYYY-MM-dd')}
+              {new Date(currentCustomer.createdAt).toString('YYYY-MM-dd')}
             </div>
 
             <Link
-              to={"/vendor/" + currentVendor.id}
+              to={"/customer/" + currentCustomer.id}
               className="badge badge-warning"
             >
               Edit
@@ -160,7 +159,7 @@ const VendorList = () => {
         ) : (
           <div>
             <br />
-            <p>Please click on a Vendor...</p>
+            <p>Please click on a Customer...</p>
           </div>
         )}
       </div>
@@ -168,4 +167,4 @@ const VendorList = () => {
   );
 };
 
-export default VendorList;
+export default CustomerList;

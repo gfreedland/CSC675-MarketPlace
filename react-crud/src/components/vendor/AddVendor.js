@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import VendorDataService from '../services/VendorService';
+import VendorDataService from '../../services/VendorService';
 
 const AddVendor = () => {
   const initialVendorState = {

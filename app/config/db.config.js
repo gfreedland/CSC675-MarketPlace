@@ -4,7 +4,7 @@ module.exports = {
   HOST: "localhost",
   USER: "root",
   PASSWORD: process.env.PASSWORD,
-  DB: "marketplace",
+  DB: process.env.DBNAME,
   dialect: "mysql",
   pool: {
     max: 5,
