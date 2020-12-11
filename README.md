@@ -13,20 +13,12 @@ How to run:
 
 (1) Clone repository into local environment. And go into the repo ex: `cd C:\\Users\\George\\CSC675-MarketPlace`
 
-(1.1) Make a db in your MySQL Workbench connection called whatever you want.
+(2) Make a db in your MySQL Workbench connection called whatever you want.
 
-(1.2) Add a .env file in the root dir or the repo that looks like PASSWORD=yourpasswordformyqlworkbench DBNAME=nameofdatabase
+(3) Add a .env file in the root dir or the repo that looks like PASSWORD=yourpasswordformyqlworkbench DBNAME=nameofdatabase
 
-(2) `cd react-crud`
+(4) `npm i`
 
-(3) `npm i`
+(5) `npm start`
 
-(4) `npm run build`
-
-(5) `cd ..`
-
-(6) `npm i`
-
-(7) `npm start`
-
-(8) You can open the app by going to localhost:8080 on any browser.
+(6) You can open the app by going to localhost:8080 on any browser.
