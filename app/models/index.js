@@ -19,7 +19,15 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.vendor = require("./vendor.model.js")(sequelize, Sequelize);
-db.customer = require("./customer.model.js")(sequelize, Sequelize);
+db.vendor = require('./vendor.model.js')(sequelize, Sequelize);
+db.product = require('./product.model.js')(sequelize, Sequelize);
+db.customer = require('./customer.model.js')(sequelize, Sequelize);
+
+
+db.vendor.hasMany(db.product, { as: "product" });
+db.product.belongsTo(db.vendor, {
+  foreignKey: "vid",
+  as: "vendor",
+});
 
 module.exports = db;

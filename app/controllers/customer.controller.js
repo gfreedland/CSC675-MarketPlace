@@ -3,7 +3,7 @@ const Customer = db.customer;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Customer
-exports.create = (req, res) => {
+exports.createCustomer = (req, res) => {
   if (!req.body.cname) {
     res.status(400).send({
       message: "Content can not be empty!"
@@ -50,7 +50,7 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single Customer with an id
-exports.findOne = (req, res) => {
+exports.findCustomerById = (req, res) => {
   const id = req.params.id;
 
   Customer.findByPk(id)

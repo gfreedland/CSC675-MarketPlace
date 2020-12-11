@@ -4,13 +4,13 @@ module.exports = app => {
   var router = require("express").Router();
 
   // Create a new customer
-  router.post("/", customer.create);
+  router.post("/", customer.createCustomer);
 
   // Retrieve all customers
   router.get("/", customer.findAll);
 
   // Retrieve a single customer with id
-  router.get("/:id", customer.findOne);
+  router.get("/:id", customer.findCustomerById);
 
   // Update a customer with id
   router.put("/:id", customer.update);

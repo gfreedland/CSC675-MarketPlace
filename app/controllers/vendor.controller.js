@@ -1,16 +1,30 @@
 const db = require("../models");
 const Vendor = db.vendor;
+const Product = db.product;
 const Op = db.Sequelize.Op;
 
+// An initialization create
+exports.createV = (vendor) => {
+  return Vendor.create({
+    vname: vendor.vname,
+    vtype: vendor.vtype,
+    vaddress: vendor.vaddress,
+    vemail: vendor.vemail
+  })
+  .then((vendor) => {
+    console.log(`Created vendor: ${vendor}`)
+    return vendor;
+  })
+}
+
 // Create and Save a new Vendor
-exports.create = (req, res) => {
+exports.createVendor = (req, res) => {
   if (!req.body.vname) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
     return;
   }
-
   // Create a Vendor
   const vendor = {
     vname: req.body.vname,
@@ -22,6 +36,7 @@ exports.create = (req, res) => {
   // Save Vendor in the database
   Vendor.create(vendor)
     .then(data => {
+      // maybe product creation
       res.send(data);
     })
     .catch(err => {
@@ -32,14 +47,36 @@ exports.create = (req, res) => {
     });
 };
 
+exports.createProduct = (req, res) => {
+// exports.createProduct = (vid, product) => {
+  return Product.create({
+    pname: req.body.pname,
+    pcost: req.body.pcost,
+    pcategory: req.body.pcategory,
+    vid: req.body.vid
+  })
+  .then((product) => {
+    console.log(`Created Product: ${product}`);
+    res.send(product);
+    // return product;
+  })
+  .catch((err) => {
+    console.log(`Error creating Product: ${err}`);
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while creating the Product."
+    });
+  })
+};
+
 // Retrieve all Vendors from the db by name.
 exports.findAll = (req, res) => {
   const vname = req.query.vname;
   var condition = vname ? { vname: { [Op.like]: `%${vname}%` } } : null;
 
   Vendor.findAll({ where: condition })
-    .then(data => {
-      res.send(data);
+    .then(vendors => {
+      res.send(vendors);
     })
     .catch(err => {
       res.status(500).send({
@@ -50,16 +87,32 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single Vendor with an id
-exports.findOne = (req, res) => {
-  const id = req.params.id;
+exports.findVendorById = (req, res) => {
+  const vid = req.params.id;
 
-  Vendor.findByPk(id)
+  // Vendor.findByPk(vid, { include: ["product"] })
+
+  Vendor.findByPk(vid)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error retrieving Vendor with id=" + id
+        message: "Error retrieving Vendor with id=" + vid
+      });
+    });
+};
+
+exports.findProductById = (req, res) => {
+  const id = req.params.id;
+
+  Product.findByPk(id, { include: ["vendor"]})
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Error retrieving Product with id=" + id
       });
     });
 };

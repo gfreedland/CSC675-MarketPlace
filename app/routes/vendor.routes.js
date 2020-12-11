@@ -3,8 +3,8 @@ module.exports = app => {
 
   var router = require("express").Router();
 
-  // Create a new Venfor
-  router.post("/", vendor.create);
+  // Create a new Vendor
+  router.post("/", vendor.createVendor);
 
   // Retrieve all Vendors
   router.get("/", vendor.findAll);
@@ -16,7 +16,7 @@ module.exports = app => {
   router.get("/personal", vendor.findAllPersonal);
 
   // Retrieve a single Vendor with id
-  router.get("/:id", vendor.findOne);
+  router.get("/:id", vendor.findVendorById);
 
   // Update a Vendor with id
   router.put("/:id", vendor.update);
